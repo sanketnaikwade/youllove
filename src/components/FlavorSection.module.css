@@ -1,0 +1,205 @@
+.section {
+  position: relative;
+  height: 260vh;
+}
+
+.pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Local accent glow only — no solid fill, so the page-wide color morph
+   behind everything shows through and the section reads as part of it. */
+.section.watermelon .pin {
+  background:
+    radial-gradient(58% 55% at 78% 42%, rgba(255, 61, 90, 0.24), transparent 70%),
+    radial-gradient(46% 50% at 14% 84%, rgba(255, 122, 47, 0.14), transparent 72%);
+}
+
+.section.blueberry .pin {
+  background:
+    radial-gradient(58% 55% at 22% 42%, rgba(122, 82, 210, 0.28), transparent 70%),
+    radial-gradient(46% 50% at 84% 82%, rgba(183, 159, 240, 0.14), transparent 72%);
+}
+
+.section.watermelon {
+  --accent: var(--wm-accent);
+}
+
+.section.blueberry {
+  --accent: var(--bb-accent);
+}
+
+/* ---- Giant background numeral ---- */
+.numeralWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.numeral {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: min(58vw, 760px);
+  line-height: 1;
+  color: var(--cream);
+  will-change: transform;
+}
+
+/* ---- Content ---- */
+.grid {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4vw;
+  padding: 0 var(--pad-x);
+}
+
+.grid.reverse {
+  direction: rtl;
+}
+
+.grid.reverse > * {
+  direction: ltr;
+}
+
+.visual {
+  position: relative;
+  width: min(46vw, 380px);
+  margin: 0 auto;
+  will-change: transform;
+}
+
+.kicker {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.headline {
+  font-size: clamp(2.5rem, 6.4vw, 5rem);
+  color: var(--cream);
+}
+
+.body {
+  margin-top: 22px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--cream-dim);
+  max-width: 42ch;
+}
+
+.tags {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tags span {
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  color: var(--cream-dim);
+  transition:
+    border-color 0.3s var(--ease),
+    color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.tags span:hover {
+  border-color: var(--accent);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+
+/* ── Flavor CTA button ─────────────────────────────────────── */
+.ctaWrap {
+  margin-top: 36px;
+}
+
+.flavorCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 15px 28px;
+  border-radius: 100px;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  min-height: 48px;
+  transition:
+    transform 0.3s var(--ease),
+    background 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+.flavorCta svg {
+  flex-shrink: 0;
+  transition: transform 0.25s var(--ease);
+}
+
+.flavorCta:hover {
+  transform: translateY(-3px);
+  background: rgba(246, 239, 226, 0.05);
+  box-shadow: 0 8px 28px -6px currentColor;
+}
+
+.flavorCta:hover svg {
+  transform: translateX(5px);
+}
+
+.flavorCta:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 840px) {
+  .section {
+    height: 200vh;
+  }
+
+  .grid,
+  .grid.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    text-align: left;
+    gap: 6vw;
+  }
+
+  .visual {
+    width: min(58vw, 280px);
+    margin: 0;
+  }
+
+  .numeral {
+    font-size: 90vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .visual {
+    width: min(66vw, 240px);
+  }
+}

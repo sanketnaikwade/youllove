@@ -1,0 +1,40 @@
+.strip {
+  position: relative;
+  padding: clamp(28px, 5vw, 52px) 0;
+  background: var(--cream);
+  color: #17100f;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.track {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  will-change: transform;
+}
+
+.track span {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 5.5vw, 3.6rem);
+  padding: 0 2.4vw;
+  display: flex;
+  align-items: center;
+  gap: 2.4vw;
+  letter-spacing: -0.02em;
+}
+
+/* Alternate filled / outlined words for a kinetic, editorial rhythm. */
+.track span:nth-child(even) {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #17100f;
+}
+
+.track span::after {
+  content: '✳';
+  font-weight: 400;
+  font-size: 0.6em;
+  color: var(--wm-flesh);
+  -webkit-text-stroke: 0;
+}

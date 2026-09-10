@@ -1,0 +1,47 @@
+:root {
+  /* ---- Journey base colors (ScrollBackground morphs through these) ---- */
+  --world-intro: #150d13;
+  --world-watermelon: #2c0a13;
+  --world-transition: #1e0f24;
+  --world-blueberry: #17092e;
+  --world-cta: #23122c;
+
+  /* ---- Neutrals / text ---- */
+  --bg: #150d13;
+  --cream: #f6efe2;
+  --cream-dim: #cabfb0;
+  --cream-faint: rgba(246, 239, 226, 0.5);
+  --line: rgba(246, 239, 226, 0.14);
+
+  /* ---- Watermelon Masala — HOT ---- */
+  --wm-flesh-light: #ff8199;
+  --wm-flesh: #ff3d5a;
+  --wm-flesh-deep: #b81f42;
+  --wm-rind: #2e6b3e;
+  --wm-rind-dark: #143a20;
+  --wm-lime: #cfe83f;
+  --wm-chili: #ff7a2f;
+  --wm-seed: #1c1114;
+  --wm-accent: #cfe83f;
+  --wm-glow: rgba(255, 61, 90, 0.5);
+
+  /* ---- Blueberry Jam — DEEP ---- */
+  --bb-deep: #241a4d;
+  --bb-jam: #4a2b8f;
+  --bb-mid: #6b46c9;
+  --bb-light: #b79ff0;
+  --bb-gloss: #eae2ff;
+  --bb-accent: #b79ff0;
+  --bb-glow: rgba(122, 82, 210, 0.5);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.16, 0.8, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- Type ---- */
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+
+  /* ---- Layout ---- */
+  --pad-x: clamp(20px, 6vw, 80px);
+}
