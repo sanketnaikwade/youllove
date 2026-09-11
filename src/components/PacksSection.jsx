@@ -1,76 +1,73 @@
 import { motion } from 'framer-motion';
+import Candy from './Candy.jsx';
 import styles from './PacksSection.module.css';
 
 const packs = [
   {
     id: 'starter',
     name: 'Starter Pack',
+    tagline: 'Your first taste of Youllove.',
     price: '₹199',
     qty: '50g · 12 pieces',
-    description: 'Your intro to the Youllove universe. Pick one flavor, taste the obsession.',
-    flavor: 'Choose any 1 flavor',
+    flavor: 'Watermelon Masala',
     badge: null,
-    cta: 'Try a Pack',
+    cta: 'Choose Starter →',
     featured: false,
+    visualType: 'starter',
   },
   {
     id: 'duo',
     name: 'Duo Pack',
+    tagline: 'Two flavours. One box.',
     price: '₹349',
     qty: '100g · 24 pieces',
-    description: 'Both worlds in one box — the sweet-spicy heat of Watermelon and the deep berry pull of Blueberry.',
     flavor: 'Watermelon Masala + Blueberry Jam',
-    badge: 'Most Popular',
-    cta: 'Get the Duo',
+    badge: 'Recommend',
+    cta: 'Get the Duo →',
     featured: true,
+    visualType: 'duo',
   },
   {
     id: 'party',
     name: 'Party Box',
+    tagline: 'Made for sharing. Or not.',
     price: '₹799',
     qty: '250g · 60 pieces',
-    description: 'Share the love — or don\'t. Bulk box for events, gifting, or pure personal indulgence.',
-    flavor: 'Mix of both flavors',
-    badge: 'Best Value',
-    cta: 'Order a Box',
+    flavor: 'Mix of both flavours',
+    badge: null,
+    cta: 'Order the Box →',
     featured: false,
+    visualType: 'party',
   },
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 36 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 0.8, 0.3, 1] },
+    transition: { duration: 0.5, delay: i * 0.08, ease: [0.16, 0.8, 0.3, 1] },
   }),
 };
 
 export default function PacksSection() {
   return (
     <section className={styles.section} id="packs" aria-label="Choose your pack">
-      <div className={styles.glow} aria-hidden="true" />
-
       <div className={styles.container}>
         {/* Header */}
         <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7, ease: [0.16, 0.8, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 0.8, 0.3, 1] }}
         >
-          <p className={styles.eyebrow}>🍬 Pick Your Pack</p>
-          <h2 className={styles.heading}>
-            Every craving,{' '}
-            <span className={styles.headingAccent}>every budget.</span>
-          </h2>
-          <p className={styles.sub}>
-            Free shipping on orders above ₹499. Ships in 2–3 business days.
-          </p>
+          <p className={styles.eyebrow}>🍭 PICK YOUR PACK</p>
+          <h2 className={styles.heading}>How much Youllove?</h2>
+          <p className={styles.sub}>One pop, a couple, or the whole box.</p>
         </motion.div>
 
-        {/* Cards */}
+        {/* Product Cards */}
         <div className={styles.grid}>
           {packs.map((pack, i) => (
             <motion.article
@@ -80,48 +77,77 @@ export default function PacksSection() {
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {pack.badge && <span className={styles.badge}>{pack.badge}</span>}
 
-              <div className={styles.cardTop}>
-                <h3 className={styles.packName}>{pack.name}</h3>
-                <div className={styles.priceRow}>
+              {/* Product Visual Display Area */}
+              <div className={`${styles.productVisual} ${styles[`visual_${pack.id}`]}`}>
+                {pack.visualType === 'starter' && (
+                  <div className={styles.singleCandy}>
+                    <Candy variant="watermelon" size="84px" />
+                  </div>
+                )}
+                {pack.visualType === 'duo' && (
+                  <div className={styles.duoCandies}>
+                    <div className={styles.candyLeft}>
+                      <Candy variant="watermelon" size="78px" />
+                    </div>
+                    <div className={styles.candyRight}>
+                      <Candy variant="blueberry" size="78px" />
+                    </div>
+                  </div>
+                )}
+                {pack.visualType === 'party' && (
+                  <div className={styles.partyCandies}>
+                    <div className={styles.partyWrap}>
+                      <Candy variant="watermelon" size="62px" />
+                      <Candy variant="blueberry" size="68px" />
+                      <Candy variant="watermelon" size="62px" />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Product Info */}
+              <div className={styles.cardBody}>
+                <div className={styles.cardMeta}>
+                  <h3 className={styles.packName}>{pack.name}</h3>
+                  <p className={styles.tagline}>{pack.tagline}</p>
+                </div>
+
+                <div className={styles.flavorLine}>
+                  <span className={styles.flavorBullet}>•</span>
+                  <span>{pack.flavor}</span>
+                </div>
+
+                <div className={styles.priceBlock}>
                   <span className={styles.price}>{pack.price}</span>
                   <span className={styles.qty}>{pack.qty}</span>
                 </div>
+
+                <a
+                  href="#cta"
+                  id={`pack-cta-${pack.id}`}
+                  className={`${styles.cardCta} ${pack.featured ? styles.cardCtaFeatured : styles.cardCtaStandard}`}
+                >
+                  {pack.cta}
+                </a>
               </div>
-
-              <p className={styles.desc}>{pack.description}</p>
-              <p className={styles.flavorNote}>{pack.flavor}</p>
-
-              <a
-                href="#cta"
-                id={`pack-cta-${pack.id}`}
-                className={`${styles.cardCta} ${pack.featured ? styles.cardCtaPrimary : styles.cardCtaGhost}`}
-              >
-                {pack.cta}
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-                  <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" strokeWidth="1.8"
-                    strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
             </motion.article>
           ))}
         </div>
 
-        {/* Trust row */}
-        <motion.div
-          className={styles.trust}
+        {/* Understated D2C Trust Information */}
+        <motion.p
+          className={styles.trustLine}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.35 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
-          {['🚚 Free shipping ₹499+', '🔒 Secure checkout', '↩️ Easy returns', '🌿 All natural'].map(t => (
-            <span key={t} className={styles.trustBadge}>{t}</span>
-          ))}
-        </motion.div>
+          Free shipping over ₹499 · Secure checkout · Easy returns
+        </motion.p>
       </div>
     </section>
   );

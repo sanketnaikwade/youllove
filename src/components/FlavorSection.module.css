@@ -177,29 +177,107 @@
 
 @media (max-width: 840px) {
   .section {
-    height: 200vh;
+    height: 180vh;
+  }
+
+  .pin {
+    padding: 32px var(--pad-x) calc(70px + env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
   }
 
   .grid,
   .grid.reverse {
     grid-template-columns: 1fr;
     direction: ltr;
-    text-align: left;
-    gap: 6vw;
+    text-align: center;
+    gap: 14px;
   }
 
   .visual {
-    width: min(58vw, 280px);
-    margin: 0;
+    width: min(44vw, 180px);
+    margin: 0 auto;
+  }
+
+  .kicker {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+
+  .headline {
+    font-size: clamp(1.8rem, 6.5vw, 2.6rem);
+  }
+
+  .body {
+    margin-top: 12px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tags {
+    margin-top: 18px;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .tags span {
+    padding: 6px 14px;
+    font-size: 0.74rem;
+  }
+
+  .ctaWrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .flavorCta {
+    padding: 12px 24px;
+    min-height: 44px;
+    font-size: 0.85rem;
   }
 
   .numeral {
-    font-size: 90vw;
+    font-size: 80vw;
   }
 }
 
 @media (max-width: 480px) {
+  .pin {
+    padding: 24px var(--pad-x) calc(75px + env(safe-area-inset-bottom, 0px));
+  }
+
   .visual {
-    width: min(66vw, 240px);
+    width: min(40vw, 140px);
+  }
+
+  .headline {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  .body {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .tags {
+    margin-top: 14px;
+    gap: 6px;
+  }
+
+  .tags span {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+
+  .ctaWrap {
+    margin-top: 16px;
+  }
+
+  .flavorCta {
+    padding: 11px 22px;
+    min-height: 42px;
+    font-size: 0.82rem;
   }
 }
